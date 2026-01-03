@@ -4,9 +4,8 @@ const userRoutes = require('./modules/users/user.routes');
 const workoutRoutes = require('./modules/workouts/workout.routes');
 const exerciseRoutes = require("./modules/exercises/exercise.routes");
 const planRoutes = require("./modules/plans/plan.routes");
-
-
-
+const progressRoutes = require("./modules/progress/progress.routes");
+const scheduleRoutes = require("./modules/schedules/schedule.routes");
 
 
 
@@ -20,6 +19,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/workouts', workoutRoutes);
 app.use("/api/exercises", exerciseRoutes);
 app.use("/api/plans", planRoutes);
+app.use("/api/progress", progressRoutes);
+app.use("/api/schedules", scheduleRoutes);
 
 
 
