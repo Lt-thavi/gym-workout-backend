@@ -2,13 +2,16 @@ const express = require("express");
 const router = express.Router();
 const controller = require("./plan.controller");
 const auth = require("../../middleware/auth");
+const { trainerOrAdmin } = require("../../middleware/roles");
 
-router.use(auth);
+// READ (authenticated users)
+router.get("/", auth, controller.getPlans);
+router.get("/:id", auth, controller.getPlanById);
 
-router.post("/", controller.createPlan);
-router.get("/", controller.getPlans);
-router.get("/:id", controller.getPlanById);
-router.put("/:id", controller.updatePlan);
-router.delete("/:id", controller.deletePlan);
+// WRITE (trainer/admin)
+router.post("/", auth, trainerOrAdmin, controller.createPlan);
+router.put("/:id", auth, trainerOrAdmin, controller.updatePlan);
+router.delete("/:id", auth, trainerOrAdmin, controller.deletePlan);
 
 module.exports = router;
+
